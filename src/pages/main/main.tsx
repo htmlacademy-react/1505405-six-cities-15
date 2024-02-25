@@ -1,4 +1,4 @@
-import CityCard from '../components/city-card/city-card';
+import CityCard from '../../components/city-card/city-card';
 
 interface MainProps {
   rentNumber: number;
