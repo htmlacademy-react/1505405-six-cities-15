@@ -4,29 +4,42 @@ import NotFound from '../pages/not-found/not-found';
 import Offer from '../pages/offer/offer';
 import Login from '../pages/login/login';
 import Favorites from '../pages/favorites/favorites';
-import { Path } from '../constants';
+import { AppRoute } from '../constants';
 import PrivateRoute from '../components/private-route/private-route';
+import Layout from '../components/layout/layout';
+import { getAuthorizationStatus } from '../authorizationStatus';
 
 interface AppProps {
   rentNumber: number;
 }
 
 function App({ rentNumber }: AppProps) {
+  const authorizationStatus = getAuthorizationStatus();
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={Path.MAIN} element={<Main rentNumber={rentNumber} />} />
-        <Route path={Path.LOGIN} element={<Login />} />
-        <Route
-          path={Path.FAVS}
-          element={
-            <PrivateRoute isAuth={false}>
-              <Favorites />
-            </PrivateRoute>
-          }
-        />
-        <Route path={Path.OFFER} element={<Offer />} />
-        <Route path={Path.NOT_FOUND} element={<NotFound />} />
+        <Route path={AppRoute.MAIN} element={<Layout />}>
+          <Route index element={<Main rentNumber={rentNumber} />} />
+          <Route
+            path={AppRoute.LOGIN}
+            element={
+              <PrivateRoute authStatus={authorizationStatus} isReverse>
+                <Login />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.FAVS}
+            element={
+              <PrivateRoute authStatus={authorizationStatus}>
+                <Favorites />
+              </PrivateRoute>
+            }
+          />
+          <Route path={AppRoute.OFFER} element={<Offer />} />
+          <Route path={AppRoute.NOT_FOUND} element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

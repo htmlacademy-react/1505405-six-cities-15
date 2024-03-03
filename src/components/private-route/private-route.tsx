@@ -1,17 +1,21 @@
 import { Navigate } from 'react-router-dom';
-import { Path } from '../../constants';
+import { AppRoute, AuthorizationStatus } from '../../constants';
 
 type PrivateRouteProps = {
-  isAuth: boolean;
+  authStatus: AuthorizationStatus;
+  isReverse?: boolean;
   children: JSX.Element;
 };
 
-function PrivateRoute({ isAuth = false, children }: PrivateRouteProps) {
-  if (isAuth) {
+function PrivateRoute({ authStatus, isReverse, children }: PrivateRouteProps) {
+  if (
+    authStatus ===
+    (isReverse ? AuthorizationStatus.NOT_AUTH : AuthorizationStatus.AUTH)
+  ) {
     return children;
   }
 
-  return <Navigate to={Path.LOGIN} />;
+  return <Navigate to={AppRoute.LOGIN} />;
 }
 
 export default PrivateRoute;
