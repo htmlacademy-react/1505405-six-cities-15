@@ -2,21 +2,17 @@ import { OfferType } from '../../mocks/offers';
 
 interface CityCardProps {
   offer: OfferType;
+  onMouseOver: (id: number) => void;
 }
 
-function OfferCard({ offer }: CityCardProps) {
-  const {
-    // id,
-    img,
-    price,
-    type,
-    description,
-    rating,
-    isPremium,
-  } = offer;
+function OfferCard({ offer, onMouseOver }: CityCardProps) {
+  const { id, img, price, type, description, rating, isPremium } = offer;
 
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseOver={() => onMouseOver(id)}
+    >
       {!!isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
