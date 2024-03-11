@@ -8,19 +8,20 @@ import { AppRoute } from '../constants';
 import PrivateRoute from '../components/private-route/private-route';
 import Layout from '../components/layout/layout';
 import { getAuthorizationStatus } from '../authorizationStatus';
+import { OfferType } from '../mocks/offers';
 
 interface AppProps {
-  rentNumber: number;
+  offers: OfferType[];
 }
 
-function App({ rentNumber }: AppProps) {
+function App({ offers }: AppProps) {
   const authorizationStatus = getAuthorizationStatus();
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.MAIN} element={<Layout />}>
-          <Route index element={<Main rentNumber={rentNumber} />} />
+          <Route index element={<Main offers={offers} />} />
           <Route
             path={AppRoute.LOGIN}
             element={
