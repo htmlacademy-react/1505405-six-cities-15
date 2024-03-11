@@ -3,7 +3,7 @@ import Main from '../pages/main';
 import NotFound from '../pages/not-found/not-found';
 import Offer from '../pages/offer/offer';
 import Login from '../pages/login/login';
-import Favorites from '../pages/favorites/favorites';
+import Favorites from '../pages/favorites';
 import { AppRoute } from '../constants';
 import PrivateRoute from '../components/private-route/private-route';
 import Layout from '../components/layout/layout';
@@ -34,7 +34,7 @@ function App({ offers }: AppProps) {
             path={AppRoute.FAVS}
             element={
               <PrivateRoute authStatus={authorizationStatus}>
-                <Favorites />
+                <Favorites list={offers} />
               </PrivateRoute>
             }
           />

@@ -2,29 +2,30 @@ import { OfferType } from '../../mocks/offers';
 
 interface CityCardProps {
   offer: OfferType;
-  onMouseOver: (id: number) => void;
+  page?: 'cities' | 'favorites';
+  onMouseOver?: (id: number) => void;
 }
 
-function OfferCard({ offer, onMouseOver }: CityCardProps) {
+function OfferCard({ offer, page = 'cities', onMouseOver }: CityCardProps) {
   const { id, img, price, type, description, rating, isPremium } = offer;
 
   return (
     <article
-      className="cities__card place-card"
-      onMouseOver={() => onMouseOver(id)}
+      className={`${page}__card place-card`}
+      onMouseOver={() => onMouseOver && onMouseOver(id)}
     >
       {!!isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${page}__image-wrapper place-card__image-wrapper"`}>
         <a href="#">
           <img
             className="place-card__image"
             src={img}
-            width="260"
-            height="200"
+            width={page === 'cities' ? 260 : 150}
+            height={page === 'cities' ? 200 : 110}
             alt="Place"
           />
         </a>
