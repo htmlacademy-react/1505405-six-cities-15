@@ -38,7 +38,7 @@ function App({ offers }: AppProps) {
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.OFFER} element={<Offer />} />
+          <Route path={`${AppRoute.OFFER}/:id`} element={<Offer />} />
           <Route path={AppRoute.NOT_FOUND} element={<NotFound />} />
         </Route>
       </Routes>

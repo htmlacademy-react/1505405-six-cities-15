@@ -7,10 +7,10 @@ interface OfferListProps {
 }
 
 function OfferList({ offers }: OfferListProps) {
-  const [, setActiveId] = useState<number>(0);
+  const [, setActiveId] = useState<number | null>(null);
 
-  const handleCardHover: (id: number) => void = useCallback((id) => {
-    setActiveId(id);
+  const handleCardHover: (id: number | null) => void = useCallback((id) => {
+    setActiveId(id || null);
   }, []);
 
   return (
