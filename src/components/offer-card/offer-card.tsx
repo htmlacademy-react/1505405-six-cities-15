@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { OfferType } from '../../mocks/offers';
+import { AppRoute } from '../../constants';
 
 interface CityCardProps {
   offer: OfferType;
@@ -20,7 +22,7 @@ function OfferCard({ offer, page = 'cities', onMouseOver }: CityCardProps) {
         </div>
       )}
       <div className={`${page}__image-wrapper place-card__image-wrapper"`}>
-        <a href="#">
+        <Link to={AppRoute.OFFER.replace(':id', id.toString())}>
           <img
             className="place-card__image"
             src={img}
@@ -28,7 +30,7 @@ function OfferCard({ offer, page = 'cities', onMouseOver }: CityCardProps) {
             height={page === 'cities' ? 200 : 110}
             alt="Place"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -50,7 +52,9 @@ function OfferCard({ offer, page = 'cities', onMouseOver }: CityCardProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{description}</a>
+          <Link to={AppRoute.OFFER.replace(':id', id.toString())}>
+            {description}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

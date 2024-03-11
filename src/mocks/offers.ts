@@ -16,7 +16,7 @@ export const mockOffers: OfferType[] = [
     img: 'img/apartment-01.jpg',
     price: 120,
     rating: 4,
-    description: 'Beautiful &amp; luxurious apartment at great location',
+    description: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
   },
   {
