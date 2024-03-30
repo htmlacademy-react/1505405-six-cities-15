@@ -1,8 +1,10 @@
-import { getAuthorizationStatus } from '../../authorizationStatus';
+import Map from '../../components/map';
 import ReviewForm from '../../components/review-form';
 import ReviewList from '../../components/review-list';
 import { AuthorizationStatus } from '../../constants';
+import { mockCity, mockCoordinates } from '../../mocks/coordinates';
 import { mockReviews } from '../../mocks/reviews';
+import { getAuthorizationStatus } from '../../authorizationStatus';
 
 function Offer(): JSX.Element {
   const authorizationStatus = getAuthorizationStatus();
@@ -145,7 +147,9 @@ function Offer(): JSX.Element {
             </section>
           </div>
         </div>
-        <section className="offer__map map"></section>
+        <section className="offer__map map">
+          <Map city={mockCity} points={mockCoordinates} />
+        </section>
       </section>
       <div className="container">
         <section className="near-places places">

@@ -13,3 +13,4 @@ export enum AuthorizationStatus {
 
 export const URL_MARKER_DEFAULT = '/public/img/pin.svg';
 export const URL_MARKER_CURRENT = '/public/img/pin-active.svg';
+export const MAX_MAP_WIDTH = '1144px';
