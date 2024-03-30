@@ -29,9 +29,15 @@ export type Point = {
 };
 
 export type Review = {
-  avatar: string;
-  userName: string;
+  user: User;
   rating: number;
   text: string;
   date: string;
+  pro?: boolean;
+};
+
+export type User = {
+  name: string;
+  avatar: string;
+  isPro?: boolean;
 };

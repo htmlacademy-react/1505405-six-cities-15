@@ -5,7 +5,8 @@ interface ReviewProps {
 }
 
 function ReviewItem({ review }: ReviewProps): JSX.Element {
-  const { avatar, userName, rating, text, date } = review;
+  const { user, rating, text, date } = review;
+  const { name, avatar } = user;
 
   return (
     <li className="reviews__item">
@@ -19,7 +20,7 @@ function ReviewItem({ review }: ReviewProps): JSX.Element {
             alt="Reviews avatar"
           />
         </div>
-        <span className="reviews__user-name">{userName}</span>
+        <span className="reviews__user-name">{name}</span>
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
