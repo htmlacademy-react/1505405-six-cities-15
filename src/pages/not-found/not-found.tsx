@@ -1,4 +1,4 @@
-function NotFound() {
+function NotFound(): JSX.Element {
   return (
     <div>
       <p>404, страница не найдена</p>

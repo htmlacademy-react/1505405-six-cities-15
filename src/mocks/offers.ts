@@ -1,14 +1,4 @@
-type PlaceType = 'Apartment' | 'Room';
-
-export type OfferType = {
-  id: number;
-  img: string;
-  price: number;
-  type: PlaceType;
-  description: string;
-  rating?: number;
-  isPremium?: boolean;
-};
+import { OfferType } from '../types/types';
 
 export const mockOffers: OfferType[] = [
   {

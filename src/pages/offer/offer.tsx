@@ -2,7 +2,7 @@ import { getAuthorizationStatus } from '../../authorizationStatus';
 import ReviewForm from '../../components/review-form';
 import { AuthorizationStatus } from '../../constants';
 
-function Offer() {
+function Offer(): JSX.Element {
   const authorizationStatus = getAuthorizationStatus();
 
   return (

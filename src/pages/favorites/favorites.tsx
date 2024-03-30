@@ -1,11 +1,11 @@
 import OfferCard from '../../components/offer-card';
-import { OfferType } from '../../mocks/offers';
+import { OfferType } from '../../types/types';
 
 interface FavoritesProps {
   list: OfferType[];
 }
 
-function Favorites({ list }: FavoritesProps) {
+function Favorites({ list }: FavoritesProps): JSX.Element {
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">

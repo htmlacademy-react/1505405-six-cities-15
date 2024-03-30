@@ -8,7 +8,7 @@ import { AppRoute } from '../constants';
 import PrivateRoute from '../components/private-route';
 import Layout from '../components/layout';
 import { getAuthorizationStatus } from '../authorizationStatus';
-import { OfferType } from '../mocks/offers';
+import { OfferType } from '../types/types';
 
 interface AppProps {
   offers: OfferType[];

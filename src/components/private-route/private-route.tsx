@@ -7,7 +7,11 @@ type PrivateRouteProps = {
   children: JSX.Element;
 };
 
-function PrivateRoute({ authStatus, isReverse, children }: PrivateRouteProps) {
+function PrivateRoute({
+  authStatus,
+  isReverse,
+  children,
+}: PrivateRouteProps): JSX.Element {
   if (
     authStatus ===
     (isReverse ? AuthorizationStatus.NOT_AUTH : AuthorizationStatus.AUTH)

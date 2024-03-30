@@ -1,11 +1,11 @@
 import OfferList from '../../components/offer-list';
-import { OfferType } from '../../mocks/offers';
+import { OfferType } from '../../types/types';
 
 interface MainProps {
   offers: OfferType[];
 }
 
-function Main({ offers }: MainProps) {
+function Main({ offers }: MainProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>

@@ -3,7 +3,7 @@ import { AuthorizationStatus, AppRoute } from '../../constants';
 import { getLayoutState } from './layout.utils';
 import { getAuthorizationStatus } from '../../authorizationStatus';
 
-function Layout() {
+function Layout(): JSX.Element {
   const { pathname } = useLocation();
   const { rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter } =
     getLayoutState(pathname as AppRoute);

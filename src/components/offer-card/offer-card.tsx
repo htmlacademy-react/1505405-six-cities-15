@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { OfferType } from '../../mocks/offers';
 import { AppRoute } from '../../constants';
+import { OfferType } from '../../types/types';
 
 interface CityCardProps {
   offer: OfferType;
@@ -8,7 +8,11 @@ interface CityCardProps {
   onMouseOver?: (id: number | null) => void;
 }
 
-function OfferCard({ offer, page = 'cities', onMouseOver }: CityCardProps) {
+function OfferCard({
+  offer,
+  page = 'cities',
+  onMouseOver,
+}: CityCardProps): JSX.Element {
   const { id, img, price, type, description, rating, isPremium } = offer;
 
   return (
