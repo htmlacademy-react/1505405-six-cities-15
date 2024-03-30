@@ -1,13 +1,15 @@
-import OfferCard from '../offer-card';
-import { OfferType } from '../../mocks/offers';
 import { useCallback, useState } from 'react';
+import Map from '../map';
+import OfferCard from '../offer-card';
+import { mockCity, mockCoordinates } from '../../mocks/coordinates';
+import { OfferType } from '../../types/types';
 
 interface OfferListProps {
   offers: OfferType[];
 }
 
-function OfferList({ offers }: OfferListProps) {
-  const [, setActiveId] = useState<number | null>(null);
+function OfferList({ offers }: OfferListProps): JSX.Element {
+  const [activeId, setActiveId] = useState<number | null>(null);
 
   const handleCardHover: (id: number | null) => void = useCallback((id) => {
     setActiveId(id || null);
@@ -59,7 +61,15 @@ function OfferList({ offers }: OfferListProps) {
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <section className="cities__map map">
+              <Map
+                city={mockCity}
+                points={mockCoordinates}
+                selectedPoint={
+                  activeId ? mockCoordinates[activeId - 1] : undefined
+                }
+              />
+            </section>
           </div>
         </div>
       ) : (

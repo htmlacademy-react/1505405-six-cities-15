@@ -32,7 +32,7 @@ const rating = [
   },
 ];
 
-function ReviewForm() {
+function ReviewForm(): JSX.Element {
   const [review, setReview] = useState<ReviewType>({ rating: 0, review: '' });
 
   // const handleSubmit: (formData) => void = (
