@@ -27,3 +27,17 @@ export type Point = {
   lat: number;
   lng: number;
 };
+
+export type Review = {
+  user: User;
+  rating: number;
+  text: string;
+  date: string;
+  pro?: boolean;
+};
+
+export type User = {
+  name: string;
+  avatar: string;
+  isPro?: boolean;
+};

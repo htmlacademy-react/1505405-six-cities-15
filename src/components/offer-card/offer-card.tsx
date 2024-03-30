@@ -2,15 +2,31 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../constants';
 import { OfferType } from '../../types/types';
 
+type CardType = 'cities' | 'favorites' | 'near-places';
+
 interface CityCardProps {
   offer: OfferType;
-  page?: 'cities' | 'favorites';
+  cardType?: CardType;
   onMouseOver?: (id: number | null) => void;
 }
 
+const getImgSizeByCardType: (cardType: CardType) => {
+  width: number;
+  heigth: number;
+} = (cardType) => {
+  switch (cardType) {
+    case 'favorites':
+      return { width: 150, heigth: 110 };
+    case 'cities':
+    case 'near-places':
+    default:
+      return { width: 260, heigth: 200 };
+  }
+};
+
 function OfferCard({
   offer,
-  page = 'cities',
+  cardType = 'cities',
   onMouseOver,
 }: CityCardProps): JSX.Element {
   const { id, img, price, type, description, rating, isPremium } = offer;
@@ -18,7 +34,7 @@ function OfferCard({
   return (
     <Link to={`${AppRoute.OFFER}/${id}`}>
       <article
-        className={`${page}__card place-card`}
+        className={`${cardType}__card place-card`}
         onMouseEnter={() => onMouseOver && onMouseOver(id)}
         onMouseLeave={() => onMouseOver && onMouseOver(null)}
       >
@@ -27,13 +43,12 @@ function OfferCard({
             <span>Premium</span>
           </div>
         )}
-        <div className={`${page}__image-wrapper place-card__image-wrapper"`}>
+        <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
           <img
             className="place-card__image"
             src={img}
-            width={page === 'cities' ? 260 : 150}
-            height={page === 'cities' ? 200 : 110}
             alt="Place"
+            {...getImgSizeByCardType(cardType)}
           />
         </div>
         <div className="place-card__info">

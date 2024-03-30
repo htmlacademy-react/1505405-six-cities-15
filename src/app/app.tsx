@@ -9,6 +9,7 @@ import PrivateRoute from '../components/private-route';
 import Layout from '../components/layout';
 import { getAuthorizationStatus } from '../authorizationStatus';
 import { OfferType } from '../types/types';
+import { mockOffers } from '../mocks/offers';
 
 interface AppProps {
   offers: OfferType[];
@@ -38,7 +39,10 @@ function App({ offers }: AppProps) {
               </PrivateRoute>
             }
           />
-          <Route path={`${AppRoute.OFFER}/:id`} element={<Offer />} />
+          <Route
+            path={`${AppRoute.OFFER}/:id`}
+            element={<Offer nearPlaces={mockOffers.slice(0, 3)} />}
+          />
           <Route path={AppRoute.NOT_FOUND} element={<NotFound />} />
         </Route>
       </Routes>

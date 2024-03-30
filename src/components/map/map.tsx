@@ -2,13 +2,17 @@ import { useEffect, useRef } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
 import { City, Coordinates } from '../../types/types';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../constants';
+import {
+  MAX_MAP_WIDTH,
+  URL_MARKER_CURRENT,
+  URL_MARKER_DEFAULT,
+} from '../../constants';
 import 'leaflet/dist/leaflet.css';
 
 interface MapProps {
   city: City;
   points: Coordinates[];
-  selectedPoint: Coordinates | undefined;
+  selectedPoint?: Coordinates;
 }
 
 const defaultCustomIcon = new Icon({
@@ -53,7 +57,12 @@ function Map(props: MapProps): JSX.Element {
     }
   }, [map, points, selectedPoint]);
 
-  return <div style={{ height: '100%' }} ref={mapRef}></div>;
+  return (
+    <div
+      style={{ height: '100%', maxWidth: MAX_MAP_WIDTH, margin: '0 auto' }}
+      ref={mapRef}
+    />
+  );
 }
 
 export default Map;
