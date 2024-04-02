@@ -1,11 +1,11 @@
-import { Review } from '../../types/types';
+import { TReview } from '../../types/types';
 import ReviewItem from '../review-item';
 
-interface ReviewListProps {
-  reviews: Review[];
+interface IReviewList {
+  reviews: TReview[];
 }
 
-function ReviewList({ reviews = [] }: ReviewListProps): JSX.Element {
+function ReviewList({ reviews = [] }: IReviewList): JSX.Element {
   return (
     <>
       <h2 className="reviews__title">

@@ -1,17 +1,19 @@
 import { useCallback, useState } from 'react';
 import Map from '../map';
 import OfferCard from '../offer-card';
-import { mockCity, mockCoordinates } from '../../mocks/coordinates';
-import { OfferType } from '../../types/types';
+import { TOffer } from '../../types/types';
+import { useAppSelector } from '../../hooks/store';
+import { getCurrentCity } from '../../store/selectors';
 
-interface OfferListProps {
-  offers: OfferType[];
+interface IOfferList {
+  offers: TOffer[];
 }
 
-function OfferList({ offers }: OfferListProps): JSX.Element {
-  const [activeId, setActiveId] = useState<number | null>(null);
+function OfferList({ offers }: IOfferList): JSX.Element {
+  const [, setActiveId] = useState<string | null>(null);
+  const currentCity = useAppSelector(getCurrentCity);
 
-  const handleCardHover: (id: number | null) => void = useCallback((id) => {
+  const handleCardHover: (id: string | null) => void = useCallback((id) => {
     setActiveId(id || null);
   }, []);
 
@@ -22,7 +24,7 @@ function OfferList({ offers }: OfferListProps): JSX.Element {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
-              {offers.length} places to stay in Amsterdam
+              {offers.length} places to stay in {currentCity.name}
             </b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
@@ -63,11 +65,11 @@ function OfferList({ offers }: OfferListProps): JSX.Element {
           <div className="cities__right-section">
             <section className="cities__map map">
               <Map
-                city={mockCity}
-                points={mockCoordinates}
-                selectedPoint={
-                  activeId ? mockCoordinates[activeId - 1] : undefined
-                }
+                city={currentCity}
+                points={offers.map((offer) => offer.location)}
+                // selectedPoint={
+                //   activeId ? mockCoordinates[activeId - 1] : undefined
+                // }
               />
             </section>
           </div>

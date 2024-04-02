@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../constants';
-import { OfferType } from '../../types/types';
+import { TOffer } from '../../types/types';
 
-type CardType = 'cities' | 'favorites' | 'near-places';
+type TCard = 'cities' | 'favorites' | 'near-places';
 
-interface CityCardProps {
-  offer: OfferType;
-  cardType?: CardType;
-  onMouseOver?: (id: number | null) => void;
+interface ICityCard {
+  offer: TOffer;
+  cardType?: TCard;
+  onMouseOver?: (id: string | null) => void;
 }
 
-const getImgSizeByCardType: (cardType: CardType) => {
+const getImgSizeByTCard: (cardType: TCard) => {
   width: number;
   heigth: number;
 } = (cardType) => {
@@ -28,8 +28,8 @@ function OfferCard({
   offer,
   cardType = 'cities',
   onMouseOver,
-}: CityCardProps): JSX.Element {
-  const { id, img, price, type, description, rating, isPremium } = offer;
+}: ICityCard): JSX.Element {
+  const { id, previewImage, price, type, title, rating, isPremium } = offer;
 
   return (
     <Link to={`${AppRoute.OFFER}/${id}`}>
@@ -46,9 +46,9 @@ function OfferCard({
         <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
           <img
             className="place-card__image"
-            src={img}
+            src={previewImage}
             alt="Place"
-            {...getImgSizeByCardType(cardType)}
+            {...getImgSizeByTCard(cardType)}
           />
         </div>
         <div className="place-card__info">
@@ -73,7 +73,7 @@ function OfferCard({
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
-          <h2 className="place-card__name">{description}</h2>
+          <h2 className="place-card__name">{title}</h2>
           <p className="place-card__type">{type}</p>
         </div>
       </article>

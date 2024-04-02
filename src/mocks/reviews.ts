@@ -1,6 +1,6 @@
-import { Review } from '../types/types';
+import { TReview } from '../types/types';
 
-export const mockReviews: Review[] = [
+export const mockReviews: TReview[] = [
   {
     user: {
       avatar: 'img/avatar-max.jpg',

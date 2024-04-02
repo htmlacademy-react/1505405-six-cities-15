@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
-import { City, Coordinates } from '../../types/types';
+import { TCity, TLocation } from '../../types/types';
 import {
   MAX_MAP_WIDTH,
   URL_MARKER_CURRENT,
@@ -9,10 +9,10 @@ import {
 } from '../../constants';
 import 'leaflet/dist/leaflet.css';
 
-interface MapProps {
-  city: City;
-  points: Coordinates[];
-  selectedPoint?: Coordinates;
+interface IMap {
+  city: TCity;
+  points: TLocation[];
+  selectedPoint?: TLocation;
 }
 
 const defaultCustomIcon = new Icon({
@@ -27,7 +27,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function Map(props: MapProps): JSX.Element {
+function Map(props: IMap): JSX.Element {
   const { city, points, selectedPoint } = props;
 
   const mapRef = useRef(null);
@@ -35,11 +35,13 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
+      const { latitude, longitude, zoom } = city.location;
+      map.setView({ lat: latitude, lng: longitude }, zoom);
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.lat,
-          lng: point.lng,
+          lat: point.latitude,
+          lng: point.longitude,
         });
 
         marker
@@ -55,7 +57,7 @@ function Map(props: MapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points, selectedPoint]);
+  }, [map, points, selectedPoint, city]);
 
   return (
     <div

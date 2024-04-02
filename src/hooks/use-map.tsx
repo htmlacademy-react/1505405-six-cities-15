@@ -1,10 +1,10 @@
 import { Map, TileLayer } from 'leaflet';
-import { City } from '../types/types';
+import { TCity } from '../types/types';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
-  city: City
+  city: TCity
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
@@ -13,8 +13,8 @@ function useMap(
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng,
+          lat: city.location.latitude,
+          lng: city.location.longitude,
         },
         zoom: 10,
       });
