@@ -1,11 +1,11 @@
 import { Fragment, ReactEventHandler, useState } from 'react';
 
-type ReviewType = {
+type TReview = {
   rating: number;
   review: string;
 };
 
-type FormChangeHandler = ReactEventHandler<
+type TFormChangeHandler = ReactEventHandler<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
@@ -33,7 +33,7 @@ const rating = [
 ];
 
 function ReviewForm(): JSX.Element {
-  const [review, setReview] = useState<ReviewType>({ rating: 0, review: '' });
+  const [review, setReview] = useState<TReview>({ rating: 0, review: '' });
 
   // const handleSubmit: (formData) => void = (
   //   formData
@@ -46,7 +46,7 @@ function ReviewForm(): JSX.Element {
   //   console.log(data);
   // };
 
-  const handleInputChange: FormChangeHandler = (event) => {
+  const handleInputChange: TFormChangeHandler = (event) => {
     const { name, value } = event.currentTarget;
     setReview({ ...review, [name]: value });
   };

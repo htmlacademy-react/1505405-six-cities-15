@@ -2,14 +2,14 @@ import Map from '../../components/map';
 import ReviewForm from '../../components/review-form';
 import ReviewList from '../../components/review-list';
 import { AuthorizationStatus } from '../../constants';
-import { mockCity, mockCoordinates } from '../../mocks/coordinates';
 import { mockReviews } from '../../mocks/reviews';
 import { getAuthorizationStatus } from '../../authorizationStatus';
 import OfferCard from '../../components/offer-card';
-import { OfferType } from '../../types/types';
+import { TOffer } from '../../types/types';
+import { CITIES } from '../../mocks/cities';
 
 interface OfferProps {
-  nearPlaces: OfferType[];
+  nearPlaces: TOffer[];
 }
 
 function Offer({ nearPlaces }: OfferProps): JSX.Element {
@@ -154,7 +154,7 @@ function Offer({ nearPlaces }: OfferProps): JSX.Element {
           </div>
         </div>
         <section className="offer__map map">
-          <Map city={mockCity} points={mockCoordinates.slice(0, 3)} />
+          <Map city={CITIES[0]} points={[]} />
         </section>
       </section>
       <div className="container">

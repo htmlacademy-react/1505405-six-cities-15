@@ -1,10 +1,10 @@
-import { Review } from '../../types/types';
+import { TReview } from '../../types/types';
 
-interface ReviewProps {
-  review: Review;
+interface IReview {
+  review: TReview;
 }
 
-function ReviewItem({ review }: ReviewProps): JSX.Element {
+function ReviewItem({ review }: IReview): JSX.Element {
   const { user, rating, text, date } = review;
   const { name, avatar } = user;
 

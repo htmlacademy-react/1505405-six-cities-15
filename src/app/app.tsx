@@ -8,21 +8,16 @@ import { AppRoute } from '../constants';
 import PrivateRoute from '../components/private-route';
 import Layout from '../components/layout';
 import { getAuthorizationStatus } from '../authorizationStatus';
-import { OfferType } from '../types/types';
-import { mockOffers } from '../mocks/offers';
+import { OFFERS } from '../mocks/offers';
 
-interface AppProps {
-  offers: OfferType[];
-}
-
-function App({ offers }: AppProps) {
+function App() {
   const authorizationStatus = getAuthorizationStatus();
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.MAIN} element={<Layout />}>
-          <Route index element={<Main offers={offers} />} />
+          <Route index element={<Main />} />
           <Route
             path={AppRoute.LOGIN}
             element={
@@ -35,13 +30,13 @@ function App({ offers }: AppProps) {
             path={AppRoute.FAVS}
             element={
               <PrivateRoute authStatus={authorizationStatus}>
-                <Favorites list={offers} />
+                <Favorites list={OFFERS.slice(0, 3)} />
               </PrivateRoute>
             }
           />
           <Route
             path={`${AppRoute.OFFER}/:id`}
-            element={<Offer nearPlaces={mockOffers.slice(0, 3)} />}
+            element={<Offer nearPlaces={OFFERS.slice(0, 3)} />}
           />
           <Route path={AppRoute.NOT_FOUND} element={<NotFound />} />
         </Route>
